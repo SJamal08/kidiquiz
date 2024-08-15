@@ -1,4 +1,4 @@
-import { QuestionPayload, Question } from "../../model/question";
+import { Question, QuestionPayload } from "../../logic/model/question";
 import { IQuestionRepo } from "./IquestionRepo";
 
 export class InMemoryQuestionRepo implements IQuestionRepo {

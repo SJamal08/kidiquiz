@@ -1,11 +1,12 @@
+import { InMemoryQuestionRepo } from "../../repository/question/InMemoryQuestionRepo";
+import { IQuestionRepo } from "../../repository/question/IquestionRepo";
 import { Question, QuestionPayload } from "../model/question";
-import { IQuestionRepo } from "../repository/question/IquestionRepo";
 
 export class QuestionController {
 
     private questionRepo: IQuestionRepo;
 
-    constructor(questionRepo: IQuestionRepo) {
+    constructor(questionRepo: InMemoryQuestionRepo) {
         this.questionRepo = questionRepo;
     }
 
