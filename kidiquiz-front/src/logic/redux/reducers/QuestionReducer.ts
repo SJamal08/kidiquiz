@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { Question } from "../../model/question";
 import { QuestionController } from "../../controller/QuestionController";
-import { InMemoryQuestionRepo } from "../../../repository/question/InMemoryQuestionRepo";
+import { InMemoryQuestionRepo } from "../../repository/question/InMemoryQuestionRepo";
 
 const questionController: QuestionController = new QuestionController(new InMemoryQuestionRepo());
 

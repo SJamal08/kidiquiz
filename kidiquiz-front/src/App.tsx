@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './logic/redux/reduxHooks';
 import { questionAsyncActions, questionSelectors } from './logic/redux/reducers/QuestionReducer';
+import AppRouter from './Router';
 // import { questionActions } from './logic/redux/reducers/QuestionReducer';
 
 
@@ -12,10 +13,9 @@ function App() {
     console.log("try to get all questions");
   }, [dispatch])
   
-  console.log(useAppSelector(questionSelectors.selectAllQuestions));
   return (
     <div className="App">
-      helllo world
+       <AppRouter />
     </div>
   );
 }

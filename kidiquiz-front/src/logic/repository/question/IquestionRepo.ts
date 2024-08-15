@@ -1,4 +1,4 @@
-import { Question, QuestionPayload } from "../../logic/model/question";
+import { Question, QuestionPayload } from "../../model/question";
 
 export interface IQuestionRepo {
     create( question: QuestionPayload): Promise<Question>;

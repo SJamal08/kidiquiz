@@ -1,6 +1,6 @@
-import { InMemoryQuestionRepo } from "../../repository/question/InMemoryQuestionRepo";
-import { IQuestionRepo } from "../../repository/question/IquestionRepo";
 import { Question, QuestionPayload } from "../model/question";
+import { InMemoryQuestionRepo } from "../repository/question/InMemoryQuestionRepo";
+import { IQuestionRepo } from "../repository/question/IquestionRepo";
 
 export class QuestionController {
 
