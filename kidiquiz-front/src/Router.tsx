@@ -7,6 +7,7 @@ import AdminHomePage from './pages/admin/AdminHomePage'
 import AdminHomeQuestionPage from './pages/admin/AdminHomeQuestionPage'
 import AdminHomeQuiz from './pages/admin/AdminHomeQuiz'
 import { ROUTES } from './logic/utils/constants'
+import AdminAddQuizPage from './pages/admin/AdminAddQuizPage'
 
 function AppRouter() {
   return (
@@ -16,6 +17,7 @@ function AppRouter() {
           <Route path={ROUTES.adminHomePage} element={<AdminHomePage />} />
           <Route path={ROUTES.adminHomeQuestions} element={<AdminHomeQuestionPage />} />
           <Route path={ROUTES.adminHomeQuiz} element={<AdminHomeQuiz />} />
+          <Route path={ROUTES.adminAddQuizPage} element={<AdminAddQuizPage />} />
       </Route>
 
       {/* Routes pour les clients */}

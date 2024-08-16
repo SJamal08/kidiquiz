@@ -40,7 +40,7 @@ function AdminQuestionItem({question, withButtons}: {question: Question, withBut
     }
 
     return (
-        <div className="border border-blue-400 shadow-md p-4 rounded-lg w-80">
+        <div className="border border-blue-400 shadow-md p-4 rounded-lg w-60">
           <div className="font-bold text-lg mb-2">{question.wording}</div>
         
           <ul className="list-disc list-inside mb-2">

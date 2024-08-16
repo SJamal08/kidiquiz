@@ -3,4 +3,5 @@ export const ROUTES = {
     adminHomeQuestions: '/admin/questions',
     adminHomeQuiz: '/admin/quiz',
     clientHomePage: '/',
+    adminAddQuizPage: '/admin/quiz/add'
 }
