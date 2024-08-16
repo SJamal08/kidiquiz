@@ -84,20 +84,47 @@ export class InMemoryQuestionRepo implements IQuestionRepo {
         return Promise.resolve(questionToFind);
     }
     async update(id: number, question: QuestionPayload): Promise<Question | undefined> {
-        const questionUpdated = this.questions.find(q => q.id === id);
-        if (questionUpdated) {
-        questionUpdated.answer = question.answer;
-        questionUpdated.options = question.options;
-        questionUpdated.wording = question.wording;
+      try {
+        console.log("Starting update operation");
+
+        const questionsCopy = JSON.parse(JSON.stringify(this.questions));
+
+        const index = questionsCopy.findIndex((q: Question) => q.id === id);
+        console.log("Index found:", index);
+
+        if (index === -1) {
+            console.log("Question with the given id not found");
+            return Promise.resolve(undefined);
         }
+
+        const questionUpdated: Question = { id, ...question } as Question;
+        console.log("Updated question:", questionUpdated);
+
+        questionsCopy[index] = questionUpdated;
+
+        this.questions = questionsCopy;
+
+        console.log("Updated question in list:", this.questions[index]);
+
         return Promise.resolve(questionUpdated);
+    } catch (error) {
+        console.error("Error in update operation:", error);
+        return Promise.resolve(undefined);
+    }
     }
     async delete(id: number): Promise<boolean> {
+      const currentQuestions = this.questions.slice();
+      console.log("we are in repo");
         const index = this.questions.findIndex(q => q.id === id);
+        console.log("here is the index", index);
         if (index !== -1) {
-          this.questions.splice(index, 1);
+          console.log("index != -1 so we splice");
+          currentQuestions.splice(index, 1);
+          this.questions = currentQuestions; // Remplacez la liste originale
+          console.log("in repo, success");
           return Promise.resolve(true);
         }
+        console.log("in repo, fail");
         return Promise.resolve(false);
     }
 

@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Question } from "../../model/question";
+import { Question, QuestionPayload } from "../../model/question";
 import { QuestionController } from "../../controller/QuestionController";
 import { InMemoryQuestionRepo } from "../../repository/question/InMemoryQuestionRepo";
 
@@ -21,6 +21,24 @@ const getAllQuestions = createAsyncThunk('question/getAllQuestions',
         return await questionController.getAll();
      }
     )
+
+const deleteQuestion = createAsyncThunk('question/deleteQuestion',
+    async (id: number) => {
+        console.log("try delete a question");
+        const result = await questionController.delete(id);
+        console.log("result of deletion in asyncThunk", result);
+        return result;
+    }
+)
+
+const updateQuestion = createAsyncThunk('question/updateQuestion',
+    async ({id, questionPayload}: {id:number, questionPayload: QuestionPayload} ): Promise<Question | undefined> => {
+        console.log("try updating a question");
+        const result = await questionController.update(id, questionPayload);
+        console.log("result of updating in asyncThunk", result);
+        return result;
+    }
+)
     
     
     export const QuestionSlice = createSlice({
@@ -40,6 +58,20 @@ const getAllQuestions = createAsyncThunk('question/getAllQuestions',
                 console.log("getting all questions successfully");
                 state.questions = action.payload;
             })
+            .addCase(deleteQuestion.pending, state => {
+                console.log("delete question in pending");
+            })
+            .addCase(deleteQuestion.fulfilled, state => {
+                console.log("deleting question successfully");
+                // state.questions = action.payload;
+            })
+            .addCase(updateQuestion.pending, state => {
+                console.log("updating question in pending");
+            })
+            .addCase(updateQuestion.fulfilled, state => {
+                console.log("updating question successfully");
+                // state.questions = action.payload;
+            })
         }
     })
     
@@ -47,6 +79,8 @@ const getAllQuestions = createAsyncThunk('question/getAllQuestions',
     
     export const questionAsyncActions = {
         getAllQuestions,
+        deleteQuestion,
+        updateQuestion
     }
 
 const selectAllQuestions = (state: RootState) => state.questionReducer.questions 

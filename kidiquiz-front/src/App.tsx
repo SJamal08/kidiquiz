@@ -10,7 +10,6 @@ function App() {
 
   useEffect(() => {
     const loadQuestions = dispatch(questionAsyncActions.getAllQuestions());
-    console.log("try to get all questions");
   }, [dispatch])
   
   return (
