@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'flowbite-react';
 import { Quiz } from '../logic/model/Quiz';
+import { ContestPayload } from '../logic/model/Contest';
+import moment from 'moment';
+import { useAppDispatch } from '../logic/redux/reduxHooks';
+import { contestAsyncActions } from '../logic/redux/reducers/ContestReducer';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../logic/utils/constants';
 
 function AdminQuizItem({ quiz, withButtons, showLaunch }: { quiz: Quiz, withButtons?: boolean, showLaunch?: boolean }) {
     const [openQuizModal, setOpenQuizModal] = useState(false);
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate();
 
     const handleLaunchQuiz = () => {
-        // Implement logic for launching the test
+        const newContest: ContestPayload = {
+            quiz: quiz,
+            date: moment().format('YYYY-MM-DD'), // Date d'aujourd'hui au format YYYY-MM-DD
+            rankedList: []
+        };
+        dispatch(contestAsyncActions.createContest(newContest))
+        dispatch(contestAsyncActions.getAllContests())
+
+        console.log('New contest created:', newContest);
         console.log('Launch quiz', quiz.id);
+        navigate(ROUTES.clientHomePage);
     };
-    console.log("showLaunch");
-    console.log(showLaunch);
 
     return (
         <div className="border border-blue-400 shadow-md p-4 rounded-lg w-80">

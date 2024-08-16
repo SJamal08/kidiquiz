@@ -1,12 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import QuestionReducer from './reducers/QuestionReducer';
 import QuizReducer from './reducers/QuizReducer';
+import ContestReducer from './reducers/ContestReducer';
 // import AuthReducer from './reducers/AuthReducer';
 
 export const store = configureStore({
   reducer: {
     questionReducer: QuestionReducer,
-    quizReducer: QuizReducer
+    quizReducer: QuizReducer,
+    contestReducer: ContestReducer,
     // authReducer: AuthReducer,
   },
   middleware: (getDefaultMiddleware) =>
